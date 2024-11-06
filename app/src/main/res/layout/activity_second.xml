@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Enter name"
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/editTextAge"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Enter age"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/delText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Enter id"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/buttonInsert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/buttonView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Data" />
+
+    <TextView
+        android:id="@+id/textViewData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="Data will be shown here" />
+
+</LinearLayout>
