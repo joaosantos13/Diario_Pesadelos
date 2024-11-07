@@ -6,24 +6,40 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/tituloText"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="Enter name"
+        android:hint="Título"
         android:inputType="textPersonName" />
+
     <EditText
-        android:id="@+id/editTextAge"
+        android:id="@+id/dataText"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="Enter age"
-        android:inputType="number" />
+        android:hint="Selecione a data"
+        android:focusable="false"
+        android:clickable="true" />
+
+    <EditText
+        android:id="@+id/pesadeloText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Pesadelo"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/delText"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="Enter id"
+        android:hint="Id"
         android:inputType="number" />
+
+    <EditText
+        android:id="@+id/classText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Classificação"
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/buttonInsert"
@@ -46,7 +62,7 @@
     <TextView
         android:id="@+id/textViewData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="125dp"
         android:paddingTop="16dp"
         android:text="Data will be shown here" />
 
