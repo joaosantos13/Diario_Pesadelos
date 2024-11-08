@@ -1,12 +1,12 @@
 package com.example.project4
 import MyDatabaseHelper
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.project4.R
 import java.util.Calendar
 
 class SecondActivity : AppCompatActivity() {
@@ -26,6 +26,7 @@ class SecondActivity : AppCompatActivity() {
         val delText = findViewById<TextView>(R.id.delText)
         val classText = findViewById<EditText>(R.id.classText)
         val dataText = findViewById<EditText>(R.id.dataText)
+        val buttonUpdate = findViewById<Button>(R.id.buttonUpdate)
 
         buttonInsert.setOnClickListener {
             val titulo = tituloText.text.toString()
@@ -45,8 +46,8 @@ class SecondActivity : AppCompatActivity() {
 
 
         buttonView.setOnClickListener {
-            val info = dbHelper.readData()
-            textViewData.text = info.joinToString("\n")
+            val intent = Intent(this, Records::class.java)
+            startActivity(intent)
         }
 
         delBtn.setOnClickListener{
@@ -66,5 +67,25 @@ class SecondActivity : AppCompatActivity() {
                 dataText.setText(formattedDate)
             }, year, month, day).show()
         }
+
+        buttonUpdate.setOnClickListener {
+            val id = delText.text.toString().toIntOrNull()
+            val titulo = tituloText.text.toString()
+            val data = dataText.text.toString()
+            val pesadelo = pesadeloText.text.toString()
+            val descricao = classText.text.toString().toIntOrNull()
+
+            if (id != null && titulo.isNotEmpty() && data.isNotEmpty() && pesadelo.isNotEmpty() && descricao != null) {
+                val rowsAffected = dbHelper.updateData(id, titulo, data, pesadelo, descricao)
+                if (rowsAffected > 0) {
+                    textViewData.text = "Registro atualizado com sucesso!"
+                } else {
+                    textViewData.text = "Falha ao atualizar o registro."
+                }
+            } else {
+                textViewData.text = "Preencha todos os campos corretamente."
+            }
+        }
+
     }
 }

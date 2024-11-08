@@ -23,16 +23,10 @@
     <EditText
         android:id="@+id/pesadeloText"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="100dp"
         android:hint="Pesadelo"
+        android:paddingBottom="70dp"
         android:inputType="text" />
-
-    <EditText
-        android:id="@+id/delText"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Id"
-        android:inputType="number" />
 
     <EditText
         android:id="@+id/classText"
@@ -41,29 +35,42 @@
         android:hint="Classificação"
         android:inputType="numberDecimal" />
 
+    <EditText
+        android:id="@+id/delText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Id"
+        android:inputType="number" />
+
     <Button
         android:id="@+id/buttonInsert"
-        android:layout_width="wrap_content"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:text="Insert" />
 
     <Button
+        android:id="@+id/buttonUpdate"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:text="Editar" />
+
+    <Button
         android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:text="Delete" />
 
     <Button
         android:id="@+id/buttonView"
-        android:layout_width="wrap_content"
+        android:layout_width="185dp"
         android:layout_height="wrap_content"
         android:text="View Data" />
 
     <TextView
         android:id="@+id/textViewData"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:paddingTop="16dp"
+        android:layout_height="266dp"
+        android:paddingTop="50dp"
         android:text="Data will be shown here" />
 
 </LinearLayout>

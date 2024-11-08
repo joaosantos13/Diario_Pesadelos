@@ -55,7 +55,7 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
                     val pesadelo = getString(getColumnIndexOrThrow("pesadelo"))
                     val descricao = getInt(getColumnIndexOrThrow("descricao"))
 
-                    itemList.add("ID: $id, Titulo: $titulo, Data: $data, Pesadelo: $pesadelo, Descricao: $descricao")
+                    itemList.add("Pesadelo: $id\nTitulo: $titulo\nSonhado em: $data\nDescrição: $pesadelo\nAssustador nível: $descricao")
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -65,7 +65,6 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         return itemList
     }
 
-
     fun deleteData(id: Int): Int {
         val db = writableDatabase
         // Define a cláusula WHERE para especificar o ID a ser excluído
@@ -73,6 +72,23 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val selectionArgs = arrayOf(id.toString())
         // Executa o método delete e retorna o número de linhas excluídas
         return db.delete("Diary", selection, selectionArgs)
+    }
+
+    fun updateData(id: Int, titulo: String, data: String, pesadelo: String, descricao: Int): Int {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("titulo", titulo)
+            put("data", data)
+            put("pesadelo", pesadelo)
+            put("descricao", descricao)
+        }
+
+        // Critério WHERE para identificar o registro a ser atualizado pelo ID
+        val selection = "id = ?"
+        val selectionArgs = arrayOf(id.toString())
+
+        // Retorna o número de linhas afetadas pela atualização
+        return db.update("Diary", values, selection, selectionArgs)
     }
 
 }
