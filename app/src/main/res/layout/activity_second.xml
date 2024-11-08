@@ -36,7 +36,7 @@
         android:inputType="numberDecimal" />
 
     <EditText
-        android:id="@+id/delText"
+        android:id="@+id/IdText"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="Id"

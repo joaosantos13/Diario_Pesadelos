@@ -17,13 +17,13 @@ class SecondActivity : AppCompatActivity() {
 
         dbHelper = MyDatabaseHelper(this)
 
+        val idText = findViewById<EditText>(R.id.IdText)
         val tituloText = findViewById<EditText>(R.id.tituloText)
         val pesadeloText = findViewById<EditText>(R.id.pesadeloText)
         val buttonInsert = findViewById<Button>(R.id.buttonInsert)
         val buttonView = findViewById<Button>(R.id.buttonView)
         val textViewData = findViewById<TextView>(R.id.textViewData)
         val delBtn = findViewById<Button>(R.id.buttonDelete)
-        val delText = findViewById<TextView>(R.id.delText)
         val classText = findViewById<EditText>(R.id.classText)
         val dataText = findViewById<EditText>(R.id.dataText)
         val buttonUpdate = findViewById<Button>(R.id.buttonUpdate)
@@ -42,8 +42,11 @@ class SecondActivity : AppCompatActivity() {
                 pesadeloText.text.clear()
                 classText.text.clear()
             }
+            else
+            {
+                textViewData.text = "Preencha todos os campos corretamente."
+            }
         }
-
 
         buttonView.setOnClickListener {
             val intent = Intent(this, Records::class.java)
@@ -51,8 +54,17 @@ class SecondActivity : AppCompatActivity() {
         }
 
         delBtn.setOnClickListener{
-            val id = delText.text.toString().toInt()
-            dbHelper.deleteData(id)
+            if(idText.text.toString() != ""){
+                val id = idText.text.toString().toInt()
+                dbHelper.deleteData(id)
+                idText.text.clear()
+                textViewData.text = "Exclusão atualizado com sucesso!"
+            }
+            else
+            {
+                textViewData.text = "Campo vazio!"
+            }
+
         }
 
         dataText.setOnClickListener{
@@ -69,7 +81,7 @@ class SecondActivity : AppCompatActivity() {
         }
 
         buttonUpdate.setOnClickListener {
-            val id = delText.text.toString().toIntOrNull()
+            val id = idText.text.toString().toIntOrNull()
             val titulo = tituloText.text.toString()
             val data = dataText.text.toString()
             val pesadelo = pesadeloText.text.toString()
@@ -79,8 +91,9 @@ class SecondActivity : AppCompatActivity() {
                 val rowsAffected = dbHelper.updateData(id, titulo, data, pesadelo, descricao)
                 if (rowsAffected > 0) {
                     textViewData.text = "Registro atualizado com sucesso!"
+                    idText.text.clear()
                 } else {
-                    textViewData.text = "Falha ao atualizar o registro."
+                    textViewData.text = "Registro inexistente."
                 }
             } else {
                 textViewData.text = "Preencha todos os campos corretamente."
