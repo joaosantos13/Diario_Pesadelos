@@ -3,13 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/black"
+    >
+
 
     <EditText
         android:id="@+id/tituloText"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="Título"
+        android:textColorHint="#F5A442"
         android:inputType="textPersonName" />
 
     <EditText
@@ -17,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="Selecione a data"
+        android:textColorHint="#F5A442"
         android:focusable="false"
         android:clickable="true" />
 
@@ -25,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:hint="Pesadelo"
+        android:textColorHint="#F5A442"
         android:paddingBottom="70dp"
         android:inputType="text" />
 
@@ -33,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="Classificação"
+        android:textColorHint="#F5A442"
         android:inputType="numberDecimal" />
 
     <EditText
@@ -40,31 +47,40 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="Id"
+        android:textColorHint="#F5A442"
         android:inputType="number" />
 
     <Button
         android:id="@+id/buttonInsert"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:text="Insert" />
+        android:text="Salvar"
+        android:backgroundTint="#ff9a00"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:text="Editar" />
+        android:text="Editar"
+        android:backgroundTint="#ff9a00"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/buttonDelete"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:text="Delete" />
+        android:text="Excluir"
+        android:backgroundTint="#ff9a00"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/buttonView"
-        android:layout_width="185dp"
+        android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:text="View Data" />
+        android:backgroundTint="#ff9a00"
+        android:text="Consultar Pesadelos"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textViewData"
