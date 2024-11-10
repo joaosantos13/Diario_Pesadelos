@@ -3,12 +3,14 @@ import MyDatabaseHelper
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.ChipGroup
 import java.util.Calendar
-
 class SecondActivity : AppCompatActivity() {
     private lateinit var dbHelper: MyDatabaseHelper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,39 @@ class SecondActivity : AppCompatActivity() {
         val classText = findViewById<EditText>(R.id.classText)
         val dataText = findViewById<EditText>(R.id.dataText)
         val buttonUpdate = findViewById<Button>(R.id.buttonUpdate)
+        val chipGroupTags: ChipGroup = findViewById(R.id.chipGroupTags)
+        var tag = ""
+
+        val filter = InputFilter { source, start, end, dest, dstart, dend ->
+            try {
+                val input = (dest.toString() + source.toString()).toInt()
+                if (input in 0..10) {
+                    null  // Permitir a entrada
+                } else {
+                    ""  // Bloquear a entrada, se o número for fora do intervalo
+                }
+            } catch (e: NumberFormatException) {
+                ""  // Bloquear se não for um número
+            }
+        }
+
+        classText.filters = arrayOf(filter)
+
+        chipGroupTags.setOnCheckedChangeListener { group, checkedId ->
+            val selectedTag = when (checkedId) {
+                R.id.chipMonstros -> "Monstros"
+                R.id.chipSombras -> "Sombras"
+                R.id.chipPerseguicao -> "Perseguição"
+                else -> ""
+            }
+
+            if (selectedTag.isNotEmpty()) {
+                tag = selectedTag
+                val intent = Intent(this, Records::class.java)
+                intent.putExtra("selected_tag", selectedTag) // Passa a tag para a Activity de exibição
+                startActivity(intent)
+            }
+        }
 
         buttonInsert.setOnClickListener {
             val titulo = tituloText.text.toString()
@@ -35,7 +70,7 @@ class SecondActivity : AppCompatActivity() {
             val data = dataText.text.toString()
 
             if (titulo.isNotEmpty() && data.isNotEmpty() && pesadelo.isNotEmpty() && classificação != null) {
-                dbHelper.insertData(titulo, data, pesadelo,classificação)
+                dbHelper.insertData(titulo, data, pesadelo,classificação, tag)
 
                 tituloText.text.clear()
                 dataText.text.clear()
@@ -99,6 +134,5 @@ class SecondActivity : AppCompatActivity() {
                 textViewData.text = "Preencha todos os campos corretamente."
             }
         }
-
     }
 }
